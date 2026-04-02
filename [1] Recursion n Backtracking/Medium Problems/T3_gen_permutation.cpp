@@ -12,7 +12,7 @@ void generate_permutation(vector<bool> &used, vector<int> &permutation, int n, v
         return;
     }
     
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i <= n; i++)
     {
         if (used[i])
             continue;
@@ -28,7 +28,7 @@ int main()
 {
     int n = 3;
     vector<int> permutation;
-    vector<bool> used(n, false);
+    vector<bool> used(n + 1, false);
     vector<vector<int>> permutations;
 
     generate_permutation(used, permutation, n, permutations);
