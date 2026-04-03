@@ -2,7 +2,7 @@
 using namespace std;
 
 
-void generate_powerset(int idx, vector<int> &subset, vector<int> &arr, vector<vector<int>> &powerset)
+void generate_powerset(int idx, vector<int> subset, vector<int> &arr, vector<vector<int>> &powerset)
 {
     if (idx == arr.size())
     {
@@ -17,10 +17,13 @@ void generate_powerset(int idx, vector<int> &subset, vector<int> &arr, vector<ve
 
 int main()
 {
-    vector<int> arr = {1, 2, 3};
-    vector<int> subset;
+    int n;
+    cin >> n;
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++)
+        cin >> arr[i];
     vector<vector<int>> powerset;
-    generate_powerset(0, subset, arr, powerset);
+    generate_powerset(0, {}, arr, powerset);
     for (auto &s : powerset)
     {
         for (auto &x : s)
