@@ -27,3 +27,6 @@ int main()
     cout << cnt;
     return 0;
 }
+
+// Question 1: how to modify the code to print the subsets as well?
+// Question 2: how to modify the code to allow repetition of elements in the subsets?
