@@ -2,7 +2,7 @@
 using namespace std;
 
 
-// generate all binary strings of length k such that no two 1's are adjacent
+// Generate all binary strings of length k such that no two 1's are adjacent
 vector<string> generate_binary(int k)
 {
     if (k == 1)

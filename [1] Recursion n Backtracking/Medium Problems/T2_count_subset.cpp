@@ -2,6 +2,7 @@
 using namespace std;
 
 
+// Count the number of subsets of an array that sum up to a target sum
 void count_subset_given_sum(int idx, int curr_sum, vector<int> &arr, int target_sum, int &cnt)
 {
     if (idx == arr.size())

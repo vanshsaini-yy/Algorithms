@@ -2,8 +2,6 @@
 using namespace std;
 
 
-// `used` array can be avoided in this code at the cost of time complexity. 
-// we can check if the current number is already present in the permutation vector or not.
 void generate_permutation(vector<bool> &used, vector<int> &permutation, int n, vector<vector<int>> &permutations)
 {
     if (permutation.size() == n)
