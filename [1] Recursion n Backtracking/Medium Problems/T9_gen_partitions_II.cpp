@@ -7,7 +7,7 @@ using namespace std;
 // 1 1 1
 // 1 2
 // 3
-void solve(int curr_num, int curr_sum, vector<int> partition, int n, vector<vector<int>> &partitions)
+void generate_partitions(int curr_num, int curr_sum, vector<int> partition, int n, vector<vector<int>> &partitions)
 {
     if (curr_sum > n)
         return;
@@ -18,9 +18,9 @@ void solve(int curr_num, int curr_sum, vector<int> partition, int n, vector<vect
         return;
     }
     partition.push_back(curr_num);
-    solve(curr_num, curr_sum + curr_num, partition, n, partitions);
+    generate_partitions(curr_num, curr_sum + curr_num, partition, n, partitions);
     partition.pop_back();
-    solve(curr_num + 1, curr_sum, partition, n, partitions);
+    generate_partitions(curr_num + 1, curr_sum, partition, n, partitions);
 }
 
 int main()
@@ -28,7 +28,7 @@ int main()
     int n;
     cin >> n;
     vector<vector<int>> partitions;
-    solve(1, 0, {}, n, partitions);
+    generate_partitions(1, 0, {}, n, partitions);
     for (auto partition : partitions)
     {
         for (auto x : partition)
