@@ -37,3 +37,7 @@ int main()
     }
     return 0;
 }
+
+// This is simply target sum problem.
+// The set is {1, 2, 3, ..., n} and the target sum is n.
+// But we can use same lelement multiple times.
