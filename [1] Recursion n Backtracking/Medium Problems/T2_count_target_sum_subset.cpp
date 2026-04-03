@@ -30,3 +30,4 @@ int main()
 
 // Question 1: how to modify the code to print the subsets as well?
 // Question 2: how to modify the code to allow repetition of elements in the subsets?
+// Question 3: will this work for negative numbers in the array?
