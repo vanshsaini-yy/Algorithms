@@ -27,7 +27,7 @@ void solve(int r, vector<bool> &column, vector<bool> &diag1, vector<bool> &diag2
     }
 }
 
-// Count the number of ways to place n queens on an n x n chessboard such that no two queens threaten each other.
+// Classic Backtracking problem: N-Queens
 int solve_n_queens(int n)
 {
     // column[c] = true if there is a queen in column c
