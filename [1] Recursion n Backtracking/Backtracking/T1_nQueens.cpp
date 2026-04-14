@@ -27,13 +27,13 @@ void solve(int r, vector<bool> &column, vector<bool> &diag1, vector<bool> &diag2
     }
 }
 
-
 // Count the number of ways to place n queens on an n x n chessboard such that no two queens threaten each other.
 int solve_n_queens(int n)
 {
     // column[c] = true if there is a queen in column c
     // diag1[r + c] = true if there is a queen in the main diagonal containing (r, c)
     // diag2[r - c + n - 1] = true if there is a queen in the anti-diagonal containing (r, c)
+    
     vector<bool> column(n, false);
     vector<bool> diag1(2 * n - 1, false), diag2(2 * n - 1, false);
 
