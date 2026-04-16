@@ -1,14 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/**
+ * Classic backtracking problem: Knight's Tour
+ * Given an n x n chessboard, find a sequence of moves for a knight such that it visits every square exactly once.
+ */
 
 vector<int> di = {2, 2, -2, -2, 1, 1, -1, -1};
 vector<int> dj = {1, -1, 1, -1, 2, -2, 2, -2};
 
 // Vanilla backtracking solution
-bool solve(int i, int j, int n, int num_visited, vector<vector<int>> &moves) {
-    if (num_visited == n * n - 1) {
-        moves[i][j] = num_visited;
+bool solve_naive(int i, int j, int num_visited, int n, vector<vector<int>> &moves) {
+    if (num_visited == n * n) {
         return true;
     }
 
@@ -19,12 +22,12 @@ bool solve(int i, int j, int n, int num_visited, vector<vector<int>> &moves) {
         if (new_i < 0 || new_i > n - 1 || new_j < 0 || new_j > n - 1 || moves[new_i][new_j] != -1)
             continue;
 
-        moves[i][j] = num_visited;
+        moves[new_i][new_j] = num_visited;
 
-        if (solve(new_i, new_j, n, num_visited + 1, moves))
+        if (solve_naive(new_i, new_j, num_visited + 1, n, moves))
             return true;
 
-        moves[i][j] = -1;
+        moves[new_i][new_j] = -1;
     }
 
     return false;
@@ -46,9 +49,8 @@ int count_onward_moves(int i, int j, int n, vector<vector<int>> &moves) {
     return count;
 }
 
-bool solve_heuristic(int i, int j, int n, int num_visited, vector<vector<int>> &moves) {
-    if (num_visited == n * n - 1) {
-        moves[i][j] = num_visited;
+bool solve_heuristic(int i, int j, int num_visited, int n, vector<vector<int>> &moves) {
+    if (num_visited == n * n) {
         return true;
     }
 
@@ -76,21 +78,21 @@ bool solve_heuristic(int i, int j, int n, int num_visited, vector<vector<int>> &
         int new_i = move.second.first;
         int new_j = move.second.second;
 
-        moves[i][j] = num_visited;
+        moves[new_i][new_j] = num_visited;
 
-        if (solve_heuristic(new_i, new_j, n, num_visited + 1, moves))
+        if (solve_heuristic(new_i, new_j, num_visited + 1, n, moves))
             return true;
 
-        moves[i][j] = -1;
+        moves[new_i][new_j] = -1;
     }
 
     return false;
 }
 
-// Classic Backtracking problem: Knight's Tour
 vector<vector<int>> knights_tour(int n) {
     vector<vector<int>> moves(n, vector<int>(n, -1));
-    bool exists = solve_heuristic(0, 0, n, 0, moves);
+    moves[0][0] = 0;
+    bool exists = solve_naive(0, 0, 1, n, moves);
 
     if (!exists)
         return {};
@@ -113,6 +115,5 @@ int main() {
             cout << endl;
         }
     }
-
     return 0;
 }
