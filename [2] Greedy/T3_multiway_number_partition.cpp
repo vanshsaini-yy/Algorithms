@@ -35,7 +35,7 @@ float min_imbalance(int n, int k, vector<int> S)
     return imbalance;
 }
 
-// Bonus: Recursive solution to general case
+// Bonus: Recursive solution to general case + symmetry breaking introduction
 void solve(int idx, vector<int> &subset_sums, float current_imbalance, vector<int> &S, float avg, float &min_imbalance) {
     // Pruning: If we are already worse than the best, stop
     if (current_imbalance >= min_imbalance)
