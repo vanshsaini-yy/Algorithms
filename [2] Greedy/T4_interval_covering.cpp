@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
 /**
  * Interval Covering Problem:
  * Given a set of intervals and a target interval, find the minimum number of intervals from the set that can cover the target interval. 
