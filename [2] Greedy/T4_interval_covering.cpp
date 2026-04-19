@@ -4,7 +4,9 @@ using namespace std;
 
 /**
  * Interval Covering Problem:
- * Given a set of intervals and a target interval, find the minimum number of intervals from the set that can cover the target interval. 
+ * Given a set of intervals and a target interval, find the minimum number of intervals from the set that can cover the target interval.
+ * An interval is a pair of integers (start, end) where start <= end.
+ * An interval (start, end) covers a point x if start <= x <= end.
  * If it's not possible to cover the target interval, return -1.
  * 
  * Greedy approach:
