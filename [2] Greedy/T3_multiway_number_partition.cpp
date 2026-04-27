@@ -3,19 +3,27 @@ using namespace std;
 
 
 /**
- * Multiway Number Partitioning:
- * Given a set S of n numbers and a positive integer k, partition S into k subsets such that the subset sums are as nearly equal as possible.
- * The nearly equal condition is defined as minimizing the imbalance, which is the sum of the absolute difference between the average sum and the subset sums.
- * General problem is NP-hard, but we can solve a particular case using greedy approach.
- * 
- * Case: Each subset can have at most 2 elements and 1 <= n <= 2k.
- * Greedy approach:
- *     1. Calculate the average sum of the subsets.
- *     2. Add suitable number of zeros to the set to make its size 2k.
- *     3. Sort the numbers in decreasing order.
- *     4. Pair the largest and smallest numbers to form subsets.
- *     5. Calculate the imbalance.
- * Bonus: Try proving that greedy approach is optimal for this case.
+ * Multiway Number Partitioning (Greedy, At-Most-2 Case):
+ * Given a set S of n numbers and a positive integer k, partition S into exactly k subsets
+ * to minimize imbalance — defined as the sum of absolute differences between each subset
+ * sum and the global average sum. The general problem is NP-hard; this greedy approach is
+ * optimal for the restricted case where each subset holds at most 2 elements and n <= 2k.
+ *
+ * Proof: By exchange argument — suppose an optimal solution pairs large element a with
+ *         large element b instead of with small element s. Swapping s in for b moves one
+ *         pair closer to the mean and the other further; because the array is symmetric
+ *         after sorting, the largest-with-smallest pairing balances all deviations
+ *         simultaneously and no swap can reduce total imbalance further.
+ *
+ * Variations:
+ *     1. Exact 2-way partition minimizing |S1 − S2| (subset-sum DP in O(n · total_sum))
+ *     2. k-way partition, unrestricted subset sizes (LDM heuristic or ILP for exact answer)
+ *     3. Partition into k subsets of equal sum — decision version (backtracking with pruning;
+ *        NP-complete in general)
+ *     4. Minimize the maximum subset sum instead of imbalance (binary search on answer +
+ *        greedy feasibility check in O(n log n))
+ *     5. Online variant — numbers arrive one at a time (assign each number to the currently
+ *        lightest subset; no global sort available)
  */
 
 float min_imbalance(int n, int k, vector<int> S)

@@ -3,13 +3,25 @@ using namespace std;
 
 
 /**
- * Fractional Knapsack Problem:
- * Given weights and values of n items, put these items in a knapsack of capacity W to get the maximum total value.
- * In fractional knapsack, we can break items for maximizing value. For e.g., we can take half of an item.
- * Greedy approach:
- *     1. Calculate the value per unit weight for each item.
- *     2. Sort the items in decreasing order of value per unit weight.
- *     3. Take items in this order until the knapsack is full.
+ * Fractional Knapsack:
+ * Given n items each with a weight and a value, and a knapsack of total capacity W,
+ * maximize the total value packed. Fractions of an item may be taken — taking a fraction
+ * f of item i contributes f * value[i] to the total and f * weight[i] to capacity used.
+ *
+ * Proof: Greedy is optimal by exchange argument — suppose an optimal solution takes less
+ *         of item i (higher density) and more of item j (lower density). Swapping that
+ *         unit from j to i increases total value without violating capacity, contradicting
+ *         optimality. Hence always preferring higher-density items is globally optimal.
+ *
+ * Variations:
+ *     1. 0/1 knapsack — items cannot be split (greedy fails; use bottom-up DP in O(n·W))
+ *     2. Bounded knapsack — each item has a maximum count (DP with binary grouping or
+ *        monotone deque to reduce to 0/1 knapsack)
+ *     3. Multi-dimensional knapsack — items consume weight and volume (2D DP; no greedy)
+ *     4. Fractional knapsack with item dependencies — item i requires item j to be taken
+ *        first (greedy order breaks; model as DAG DP)
+ *     5. Online fractional knapsack — items arrive one at a time with unknown future items
+ *        (competitive-ratio algorithms; optimal offline greedy no longer applicable)
  */
 
 int get_max_value(int n, int W, vector<int> weight, vector<int> value) {

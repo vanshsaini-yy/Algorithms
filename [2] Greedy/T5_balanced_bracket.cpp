@@ -3,23 +3,26 @@ using namespace std;
 
 
 /**
- * Leetcode: Valid Parentheses String
- * Given a string containing only three types of characters: '(', ')' and '*', check whether this string is a valid parentheses string. 
- * The '*' character can be treated as a single right parenthesis ')' or a single left parenthesis '(' or an empty string.
+ * Valid Parentheses String (Leetcode 678):
+ * Given a string of '(', ')', and '*', determine if it is a valid parenthesis sequence.
+ * '*' is a wildcard — it may be treated as '(', ')', or an empty string. A sequence is
+ * valid if every '(' has a matching ')' in correct nesting order.
+ *
+ * Alternatives: Two-pointer range tracking in O(n) O(1) space — maintain [lo, hi] as the
+ *               range of possible open-bracket counts; valid iff lo == 0 at the end and hi
+ *               never goes negative. DP with state (index, open_count) in O(n²) time and
+ *               space — correct but wasteful. Recursive memoization — equivalent to DP.
  * 
- * Greedy approach:
- *     1. Use two stacks, one to keep track of the indices of open brackets and another to keep track of the indices of asterisks.
- *     2. Iterate through the string and for each character:
- *        - If it's an open bracket '(', push its index onto the open brackets stack. 
- *        - If it's a close bracket ')':
- *              - Try to match it with an open bracket from the open brackets stack. 
- *              - If the open brackets stack is empty, try to match it with an asterisk from the asterisks stack. 
- *              - If both stacks are empty, the string is invalid.
- *        - If it's an asterisk '*', push its index onto the asterisks stack.
- *    3. After processing all characters, if there are unmatched open brackets:
- *        - Try to match them with asterisks that can act as close brackets. 
- *        - If any open bracket cannot be matched with an asterisk that comes after it, the string is invalid.
- * Bonus: This can be solved with DP as well as two pointers approach. Try implementing those as well.
+ * Variations:
+ *     1. Multiple wildcard types — '*' can also represent any bracket pair (extend wildcard
+ *        stack logic; two-pointer range approach generalizes cleanly)
+ *     2. Minimum insertions to make string valid (greedy count of unmatched opens and
+ *        closes after a single left-to-right pass)
+ *     3. Minimum number of bracket reversals to make string valid (convert to reduced
+ *        sequence, count mismatched pairs; O(n) greedy)
+ *     4. Longest valid parenthesis substring (DP or stack tracking last invalid index)
+ *     5. k distinct wildcard characters each with different substitution rules (model as
+ *        range DP; greedy no longer sufficient)
  */
 
 bool checkValidString(string s) {
